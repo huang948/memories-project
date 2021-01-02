@@ -16,5 +16,3 @@ ReactDom.render(
   </Provider>,
   document.getElementById("root")
 );
-
-// Time (48:40)
