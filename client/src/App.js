@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Container, AppBar, Typography, Grow, Grid } from "@material-ui/core";
-import { useDispatch } from "react-redux";
+import { useDispatch, connect } from "react-redux";
 
 import { getPosts } from "./actions/posts";
 import Posts from "./components/Posts/Posts";
@@ -8,8 +8,7 @@ import Form from "./components/Form/Form";
 import memories from "./images/memories.png";
 import useStyles from "./styles";
 
-const App = () => {
-  const [currentId, setCurrentId] = useState(null);
+const App = ({ currentId }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
@@ -40,10 +39,10 @@ const App = () => {
             spacing={3}
           >
             <Grid item xs={12} sm={7}>
-              <Posts setCurrentId={setCurrentId} />
+              <Posts />
             </Grid>
             <Grid item xs={12} sm={4}>
-              <Form currentId={currentId} setCurrentId={setCurrentId} />
+              <Form />
             </Grid>
           </Grid>
         </Container>
@@ -52,4 +51,7 @@ const App = () => {
   );
 };
 
-export default App;
+const mapStateToProps = (state) => {
+  return { currentId: state.currentId };
+};
+export default connect(mapStateToProps)(App);

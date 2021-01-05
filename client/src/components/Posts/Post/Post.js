@@ -15,8 +15,9 @@ import useStyles from "./styles";
 import { useDispatch } from "react-redux";
 
 import { deletePost, likePost } from "../../../actions/posts";
+import { setCurrentId } from "../../../actions/currentId";
 
-const Post = ({ post, setCurrentId }) => {
+const Post = ({ post }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
@@ -38,7 +39,7 @@ const Post = ({ post, setCurrentId }) => {
           style={{ color: "white" }}
           size="small"
           onClick={() => {
-            setCurrentId(post._id);
+            dispatch(setCurrentId(post._id));
           }}
         >
           <MoreHorizIcon fontSize="default" />
